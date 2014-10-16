@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Allen Krulwich
+  - __Scrum Master__: Ryo Osawa
+  - __Development Team Members__: Carl Goldberg, Supriya Bhat
 
 ## Table of Contents
 
