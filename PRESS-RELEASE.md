@@ -29,7 +29,7 @@ New and quick ways to authenticate users of your application.
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
-Let your users choose from our growing platform of authentication tools – never remember another password. 
+Let your users choose from our growing platform of authentication tools – passwords aren't the only way. 
 
 ## Problem ##
   > Describe the problem your product solves.
