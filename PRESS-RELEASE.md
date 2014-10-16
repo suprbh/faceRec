@@ -24,7 +24,7 @@ EasyAuth
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
-New and quick ways to authenticate users
+New and quick ways to authenticate users of your application.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
