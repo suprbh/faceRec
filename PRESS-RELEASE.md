@@ -43,12 +43,16 @@ We offer a menu of authentication methods that make it easy for your users to co
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
 
+"Direct your sign up page to our site and we'll authenticate your users. When they're sent back, just check for our token.
+
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
