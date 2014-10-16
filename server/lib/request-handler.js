@@ -3,10 +3,11 @@ var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
 var util = require('../lib/utility');
 
-var db = require('../app/config');
-var User = require('../app/models/user');
-var Link = require('../app/models/link');
+/*var db = require('../app/config');
+var User = require('../app/models/user');*/
 
+
+/*
 exports.renderIndex = function(req, res) {
   res.render('index');
 };
@@ -29,12 +30,14 @@ exports.fetchLinks = function(req, res) {
   Link.find(links).then(res.send(200, links)).catch(function(e){return console.log(err);});
   
 
-  /*Link.find(function(err, links) {  // fixme: reset??
+  */
+/*Link.find(function(err, links) {  // fixme: reset??
     if (err) {
       return console.log(err);
     }
     res.send(200, links);
-  });*/
+  });*//*
+
 };
 
 exports.saveLink = function(req, res) {
@@ -138,4 +141,4 @@ exports.navToLink = function(req, res) {
       });
     }
   });
-};
+};*/
