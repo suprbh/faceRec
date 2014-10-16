@@ -39,7 +39,7 @@ Passwords are hard to use and remember. There are easier ways of identifying use
 ## Solution ##
   > Describe how your product elegantly solves the problem.
   
-We off a menu of authentication methods that are easy for your users and easy for you. 
+We offer a menu of authentication methods that are easy for your users and easy for you. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
