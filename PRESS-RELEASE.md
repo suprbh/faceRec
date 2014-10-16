@@ -19,17 +19,27 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
+EasyAuth
+
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+
+New and quick ways to authenticate users
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+Let your users choose from our growing platform of authentication tools – never remember another password. 
+
 ## Problem ##
   > Describe the problem your product solves.
 
+Passwords are hard to use and remember. There are easier ways of identifying users of your application - let us find them for you.
+
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  
+We off a menu of authentication methods that are easy for your users and easy for you. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
