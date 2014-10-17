@@ -4,17 +4,14 @@ var passwordModule = {
   // moduleName is how the server routes incoming HTTP requests,
   // EG, a get to EasyAuth.com/password will be routed to the module 'password'
   moduleName: 'password',
-
-  // Incoming authentication requests will come by this method 
-  method: 'POST',
-
+  
   // When a user wants to set up a module, this function is called and
-  // rendered at easyAuth.com/moduleName/setup
+  // rendered at GET easyAuth.com/password/setup
   setupRender: function(){
     $element = $('<form></form>').on('submit', function(e){
       $.ajax({
         type: 'POST',
-        url: 'easyAuth.com/password/setup/submit',
+        url: 'easyAuth.com/password/setup/',
         data: $('#passwordField').val()
       });
     })
@@ -24,12 +21,12 @@ var passwordModule = {
   },
 
   // When a user wants to login with a module, this function is called and
-  // rendered at easyAuth.com/moduleName/login
-  loginRender: function(){
+  // rendered for GET easyAuth.com/moduleName/login
+  authRender: function(){
     $element = $('<form></form>').on('submit', function(e){
       $.ajax({
         type: 'POST',
-        url: 'easyAuth.com/password/login/submit',
+        url: 'easyAuth.com/password/login/',
         data: $('#passwordField').val()
       });
     })
@@ -38,16 +35,16 @@ var passwordModule = {
     return $element;
   },
 
-  // When the server recieves an HTTP request to EasyAuth.com/moduleName/setup/submit,
+  // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
   // the server calls module.setup() with the request data. 
   setup: function(providedUserData){
     // Process providedUserData, eg by hashing
     return userDataForStorage;
   },
 
-  // When the server recieves an HTTP request to EasyAuth.com/moduleName/setup/submit,
+  // When the server recieves an HTTP request to POST EasyAuth.com/moduleName/setup/,
   // the server calls module.setup() with the request data and the previous stored user data.
-  login: function(providedUserData, storedUserData){
+  auth: function(providedUserData, storedUserData){
     //if (providedUserData === storedUserData){
     //  return true;
     //}
