@@ -1,4 +1,4 @@
-# Project Name
+# EasyAuth [![Build Status](https://travis-ci.org/mountain-device/easyauth.svg?branch=master)](https://travis-ci.org/mountain-device/easyauth)
 
 > Pithy project description
 
