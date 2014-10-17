@@ -35,9 +35,6 @@ var passwordModule = {
     //}
     return false;
   },
-  authenticate: function(storedUserData){
-
-  }  
 }
 
 module.exports = passwordModule;
