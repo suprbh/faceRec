@@ -33,5 +33,9 @@
     "mocha": "^1.17.1",
     "chai": "^1.9.0",
     "supertest": "^0.10.0"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
+    "test": "node server/server.js& ./node_modules/.bin/mocha --bail --reporter spec server/test/serverSpec.js; pkill -n node;"
   }
 }
