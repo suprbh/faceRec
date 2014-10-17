@@ -2,5 +2,13 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
-  - "0.8"
-  - "0.6"
+
+notifications:
+  email:
+    recipients:
+      - ryojiosawa@gmail.com
+      - allenkrulwich@gmail.com
+      - carlgoldberg1236@gmail.com
+      - supriya.bhat@gmail.com
+    on_success: [always|never|change] # default: change
+    on_failure: [always|never|change] # default: always
