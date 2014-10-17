@@ -1,20 +1,39 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel='stylesheet' type="text/css" href='styles.css'>
-    <script type='text/javascript' src='jquery/dist/jquery.min.js'></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
 
   </head>
+
   <body>
-<h1> EasyAuth </h1>
-<div id="easyAuth">
-  <form action="search">
-    <input type="textbox" id="username" placeholder="Username">
-    <div class="button">
-      <input type="button" value="login" onclick="">
-      <input type="button" value="signup" onclick="">
-    </div>
-  </form>
-</div>
-</body>
+
+    <div class="container">
+
+      <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Easy Auth</h2>
+        <input type="email" class="form-control" placeholder="Email address" required autofocus>
+
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+      </form>
+
+    </div> <!-- /container -->
+  </body>
 </html>
