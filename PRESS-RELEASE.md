@@ -1,4 +1,4 @@
-# Project Name #
+# EasyAuth # [![Build Status](https://travis-ci.org/mountain-device/easyauth.svg?branch=master)](https://travis-ci.org/mountain-device/easyauth)
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
