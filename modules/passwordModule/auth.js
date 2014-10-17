@@ -26,7 +26,7 @@ var passwordModule = {
     $element = $('<form></form>').on('submit', function(e){
       $.ajax({
         type: 'POST',
-        url: 'easyAuth.com/password/login/',
+        url: 'easyAuth.com/password/auth/',
         data: $('#passwordField').val()
       });
     })
