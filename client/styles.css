@@ -1,0 +1,22 @@
+html, body { 
+	margin: 0;
+	padding: 0;
+
+}
+h1 {
+	margin-left: 30%;
+	margin-top: 90px;
+}
+#easyAuth {
+	margin-top: 30px;
+	margin-left: 30%;
+
+}
+#username {
+	text-align: center;
+	width: 50%;
+	line-height: 20px;
+}
+input {
+	width: 50%;
+}
