@@ -57,8 +57,8 @@ module.exports = function(grunt) {
           'lib/*.js'
         ],
         tasks: [
-          'concat',
-          'uglify'
+          // 'concat',
+          // 'uglify'
         ]
       },
       css: {
@@ -115,8 +115,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat',
-    'uglify',
+    // 'concat',
+    // 'uglify',
     'cssmin',
     'jshint',
     'mochaTest'
