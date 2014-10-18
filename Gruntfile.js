@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     },
     concat: {   
       libs: {
-        src: ['client/lib/underscore.js', 'client/lib/jquery.js', 'client/lib/handlebars.js', 'client/lib/backbone.js'],
+        src: ['client/lib/underscore.js', 'client/lib/jquery.js'],
         dest: 'client/dist/client-libs.js'
       }
     },
