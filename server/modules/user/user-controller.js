@@ -28,7 +28,9 @@ module.exports = {
           res.redirect('/signup');
         } else {
           res.redirect('/index');
-/*          user.comparePassword(password, function(match) {
+          /*
+          We do not check password here for now
+          user.comparePassword(password, function(match) {
             if (match) {
               util.createSession(req, res, user);
             } else {

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var path = require('path');
 
 mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/easy-auth';
 mongoose.connect(mongoURI);
