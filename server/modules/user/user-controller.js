@@ -3,11 +3,15 @@ var util = require('../../lib/utility.js');
 
 module.exports = {
 
-  signinForm: function(req, res) {
+  loginForm: function(req, res) {
     res.render('login');
   },
 
-  signin: function(req, res) {
+  signupForm: function(req, res) {
+    res.render('signup');
+  },
+
+  loginUser: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
@@ -30,7 +34,7 @@ module.exports = {
     });
   },
 
-  signup: function(req, res) {
+  signupUser: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 

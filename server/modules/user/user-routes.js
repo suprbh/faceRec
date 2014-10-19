@@ -1,7 +1,8 @@
 var userController = require('./user-controller.js');
 
 module.exports = function (app) {
-  app.get('/signin', userController.signinForm);
-  app.post('/signin', userController.signin);
-  app.post('/signup', userController.signup);
+  app.get('/login', userController.loginForm);
+  app.post('/login', userController.loginUser);
+  app.get('/signup', userController.signupForm);
+  app.post('/signup', userController.signupUser);
 };
