@@ -30,9 +30,8 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         // Add filespec list here
-        'server/app/db-config.js',
         'server.js',
-        'server/app/models/user.js'
+        'server/**/*.js'
       ],
       options: {
         force: 'true',
