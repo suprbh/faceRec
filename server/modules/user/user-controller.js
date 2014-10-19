@@ -11,6 +11,10 @@ module.exports = {
     res.render('signup');
   },
 
+  renderIndex: function(req, res) {
+    res.render('index');
+  },
+
   loginUser: function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -20,15 +24,17 @@ module.exports = {
         console.log(err);
       } else {
         if (!user) {
-          res.redirect('/login');
+          console.log('User account does not exist');
+          res.redirect('/signup');
         } else {
-          user.comparePassword(password, function(match) {
+          res.redirect('/index');
+/*          user.comparePassword(password, function(match) {
             if (match) {
               util.createSession(req, res, user);
             } else {
               res.redirect('/login');
             }
-          });
+          });*/
         }
       }
     });
@@ -49,6 +55,7 @@ module.exports = {
           newUser.save(function(err, newUser) {
             if (err) { return console.log(err); }
             util.createSession(req, res, newUser);
+            res.redirect('/index');
           });
         } else {
           console.log('Account already exists');
