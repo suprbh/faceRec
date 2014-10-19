@@ -30,12 +30,13 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-cssmin": "^0.9.0",
     "grunt-nodemon": "^0.2.1",
+    "grunt-shell": "^0.6.4",
     "mocha": "^1.17.1",
     "chai": "^1.9.0",
     "supertest": "^0.10.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "test": "node server/server.js& ./node_modules/.bin/mocha --bail --reporter spec server/test/serverSpec.js; pkill -n node;"
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
+    "test": "node server.js& ./node_modules/.bin/mocha --bail --reporter spec server/test/serverSpec.js; pkill -n node;"
   }
 }

@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server/server.js'
+        script: 'server.js'
       }
     },
 
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       files: [
         // Add filespec list here
         'server/app/db-config.js',
-        'server/server.js',
+        'server.js',
         'server/app/models/user.js'
       ],
       options: {
@@ -57,8 +57,8 @@ module.exports = function(grunt) {
           'lib/*.js'
         ],
         tasks: [
-          'concat',
-          'uglify'
+          // 'concat',
+          // 'uglify'
         ]
       },
       css: {
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     },
     concat: {   
       libs: {
-        src: ['client/lib/underscore.js', 'client/lib/jquery.js', 'client/lib/handlebars.js', 'client/lib/backbone.js'],
+        src: ['client/lib/underscore.js', 'client/lib/jquery.js'],
         dest: 'client/dist/client-libs.js'
       }
     },
@@ -115,8 +115,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat',
-    'uglify',
+    // 'concat',
+    // 'uglify',
     'cssmin',
     'jshint',
     'mochaTest'
