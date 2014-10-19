@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'server/server.js'
+        script: 'server.js'
       }
     },
 
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       files: [
         // Add filespec list here
         'server/app/db-config.js',
-        'server/server.js',
+        'server.js',
         'server/app/models/user.js'
       ],
       options: {
