@@ -1,5 +1,6 @@
 var express = require('express');
 var partials = require('express-partials');
+var db = require('./db-config');
 
 var app = express();
 
