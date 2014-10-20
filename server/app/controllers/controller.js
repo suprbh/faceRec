@@ -18,13 +18,29 @@ exports.renderIndex = function (req, res) {
 };
 
 /**
- * This handler stores username into req.session and redirects it to the main index page
+ * This handler checks if a given user has an account.  If so, create a session and redirect to main menu page.
+ * Otherwise, it'll create a new user account first and redirect.
  *
  * @param req
  * @param res
  */
 exports.login = function (req, res) {
-  util.createSession(req, res, req.body.username);
+  var username = req.body.username;
+
+  User.findOne({username: username})
+    .exec(function(err, user) {
+      if (!user) {
+        var newUser = new User({username: username});
+        newUser.save(function(err, newUser) {
+          if( err ){
+            return res.send(500, err);
+          }
+          util.createSession(req, res, newUser);
+        });
+      } else {
+        util.createSession(req, res, newUser);
+      }
+    });
 };
 
 /**

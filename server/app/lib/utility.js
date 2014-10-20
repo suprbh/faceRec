@@ -4,7 +4,7 @@ exports.isValidUrl = function(url) {
   return url.match(rValidUrl);
 };
 
-exports.isLoggedIn = function(req, res) {
+exports.isLoggedIn = function(req) {
   return req.session ? !!req.session.user : false;
 };
 
