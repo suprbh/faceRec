@@ -8,46 +8,30 @@ var passwordModule = {
   // When a user wants to set up a module, this function is called and
   // rendered at GET easyAuth.com/password/setup
   setupRender: function(){
-    $element = $('<form></form>').on('submit', function(e){
-      $.ajax({
-        type: 'POST',
-        url: 'easyAuth.com/password/setup/',
-        data: $('#passwordField').val()
-      });
-    })
-    .append('<input type = "text" id = "passwordField">')
-    .append('<button type = "submit"> Submit </button>');
-    return $element;
+    var options = {};
+    options.ajaxURL = '';
+    var el = new EJS({url: '/templates/setup.ejs'}).render(options);
+    return el;
   },
 
   // When a user wants to login with a module, this function is called and
   // rendered for GET easyAuth.com/moduleName/login
-  authRender: function(){
-    $element = $('<form></form>').on('submit', function(e){
-      $.ajax({
-        type: 'POST',
-        url: 'easyAuth.com/password/auth/',
-        data: $('#passwordField').val()
-      });
-    })
-    .append('<input type = "text" id = "passwordField">')
-    .append('<button type = "submit"> Submit </button>');
-    return $element;
+  authRender: function(postData){
+    var options = {};
+    options.ajaxURL = '';
+    var el = new EJS({url: '/templates/auth.ejs'}).render(options);
+    return el;
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
   // the server calls module.setup() with the request data. 
-  setup: function(providedUserData){
-    // Process providedUserData, eg by hashing
-    return userDataForStorage;
+  setup: function(){
+
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/moduleName/setup/,
   // the server calls module.setup() with the request data and the previous stored user data.
-  auth: function(providedUserData, storedUserData){
-    //if (providedUserData === storedUserData){
-    //  return true;
-    //}
+  auth: function(){
     return false;
   },
 }
@@ -58,4 +42,4 @@ utils.checkPassword = function(userProvidedPassword, storedPasswordHash){
     return true;
 };
 
-module.exports = passwordModule;
+//module.exports = passwordModule;
