@@ -1,4 +1,5 @@
 // The module object will be assigned to module.exports
+var fs = require('fs');
 var passwordModule = {
 
   // moduleName is how the server routes incoming HTTP requests,
@@ -7,47 +8,36 @@ var passwordModule = {
   
   // When a user wants to set up a module, this function is called and
   // rendered at GET easyAuth.com/password/setup
-  setupRender: function(){
-    $element = $('<form></form>').on('submit', function(e){
-      $.ajax({
-        type: 'POST',
-        url: 'easyAuth.com/password/setup/',
-        data: $('#passwordField').val()
-      });
-    })
-    .append('<input type = "text" id = "passwordField">')
-    .append('<button type = "submit"> Submit </button>');
-    return $element;
+  setupRender: function(req, res){
+    var options = {};
+    console.log(fs.readdirSync('.'));
+    fs.readFile('./server/modules/password/views/setup.html', function(err, data){
+      if (err) throw err;
+      res.set('Content-Type', 'text/html');
+      res.send(data);
+    });
   },
 
   // When a user wants to login with a module, this function is called and
   // rendered for GET easyAuth.com/moduleName/login
-  authRender: function(){
-    $element = $('<form></form>').on('submit', function(e){
-      $.ajax({
-        type: 'POST',
-        url: 'easyAuth.com/password/auth/',
-        data: $('#passwordField').val()
-      });
-    })
-    .append('<input type = "text" id = "passwordField">')
-    .append('<button type = "submit"> Submit </button>');
-    return $element;
+  authRender: function(req, res){
+    var options = {};
+    fs.readFile('./server/modules/password/views/setup.html', function(err, data){
+      if (err) throw err;
+      res.set('Content-Type', 'text/html');
+      res.send(data);
+    });
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
   // the server calls module.setup() with the request data. 
-  setup: function(providedUserData){
-    // Process providedUserData, eg by hashing
-    return userDataForStorage;
+  setup: function(req, res, next){
+
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/moduleName/setup/,
   // the server calls module.setup() with the request data and the previous stored user data.
-  auth: function(providedUserData, storedUserData){
-    //if (providedUserData === storedUserData){
-    //  return true;
-    //}
+  auth: function(req, res, next){
     return false;
   },
 }
