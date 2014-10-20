@@ -1,10 +1,10 @@
 var express = require('express');
 var partials = require('express-partials');
-var util = require('./lib/utility');
-
-var handler = require('./lib/request-handler');
-
+var handler = require('./app/controllers/controller');
 var app = express();
+
+// connect to MongoDB
+require('./db-config');
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -16,17 +16,12 @@ app.configure(function() {
   app.use(express.session());
 });
 
-/*app.get('/', util.checkUser, handler.renderIndex);
+/*
+  Define all routes here
+ */
 
-app.get('/login', handler.loginUserForm);
-app.post('/login', handler.loginUser);
-app.get('/logout', handler.logoutUser);
-
-app.get('/signup', handler.signupUserForm);
-app.post('/signup', handler.signupUser);*/
-
-app.get('/*', function(req, res) {
-  res.end('Welcome to EasyAuth!');
-});
+app.get('/index', handler.renderIndex);
+app.get('/login', handler.loginForm);
+app.get('/*', handler.loginForm);
 
 module.exports = app;

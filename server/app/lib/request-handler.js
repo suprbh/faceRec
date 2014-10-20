@@ -1,7 +1,7 @@
 var request = require('request');
 var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
-var util = require('../lib/utility');
+var util = require('utility');
 
 /*var db = require('../app/config');
 var User = require('../app/models/user');*/
