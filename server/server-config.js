@@ -1,6 +1,6 @@
 var express = require('express');
 var partials = require('express-partials');
-
+var handler = require('./app/controllers/controller');
 var app = express();
 
 // connect to MongoDB
@@ -20,9 +20,8 @@ app.configure(function() {
   Define all routes here
  */
 
-// default route
-app.get('/*', function(req, res) {
-  res.render('/login');
-});
+app.get('/index', handler.renderIndex);
+app.get('/login', handler.loginForm);
+app.get('/*', handler.loginForm);
 
 module.exports = app;
