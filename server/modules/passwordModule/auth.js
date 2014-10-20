@@ -1,4 +1,6 @@
 // The module object will be assigned to module.exports
+var EJS = require('EJS');
+console.log(typeof EJS);
 var passwordModule = {
 
   // moduleName is how the server routes incoming HTTP requests,
@@ -10,7 +12,7 @@ var passwordModule = {
   setupRender: function(){
     var options = {};
     options.ajaxURL = '';
-    var el = new EJS({url: '/templates/setup.ejs'}).render(options);
+    var el = new EJS({url: '/templates/setup.ejs'}).render(null);
     return el;
   },
 
@@ -19,7 +21,7 @@ var passwordModule = {
   authRender: function(postData){
     var options = {};
     options.ajaxURL = '';
-    var el = new EJS({url: '/templates/auth.ejs'}).render(options);
+    var el = new EJS({url: '/templates/auth.ejs'}).render(null);
     return el;
   },
 
@@ -42,4 +44,4 @@ utils.checkPassword = function(userProvidedPassword, storedPasswordHash){
     return true;
 };
 
-//module.exports = passwordModule;
+module.exports = passwordModule;

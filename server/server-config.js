@@ -27,5 +27,13 @@ app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
 app.get('/index', handler.renderIndex);
 app.get('/*', handler.loginForm);
+//app.get('/*', handler.loginForm);
+
+app.get('/modules/password', function(req, res){
+  var passwordModule = require('./modules/passwordModule/auth.js');
+  var html = passwordModule.setupRender();
+  res.send(html);
+});
+
 
 module.exports = app;
