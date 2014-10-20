@@ -1,13 +1,18 @@
-module.exports = {
-  loginForm: function(req, res) {
-    res.render('login');
-  },
+var User = require('../models/model');
+var util = require('../lib/utility');
 
-  signupForm: function(req, res) {
-    res.render('signup');
-  },
+exports.loginForm = function (req, res) {
+  res.render('login');
+};
 
-  renderIndex: function(req, res) {
-    res.render('index');
-  }
+exports.signupForm = function (req, res) {
+  res.render('signup');
+};
+
+exports.renderIndex = function (req, res) {
+  res.render('index');
+};
+
+exports.login = function (req, res) {
+  util.createSession(req, res, req.body.username);
 };

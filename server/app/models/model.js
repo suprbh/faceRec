@@ -1,5 +1,3 @@
-var bcrypt = require('bcrypt-nodejs');
-var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
@@ -25,5 +23,6 @@ userSchema.pre('save', function(next){
     next();
   });
 });
+
 
 module.exports = User;

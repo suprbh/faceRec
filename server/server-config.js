@@ -19,9 +19,9 @@ app.configure(function() {
 /*
   Define all routes here
  */
-
-app.get('/index', handler.renderIndex);
 app.get('/login', handler.loginForm);
+app.post('/login', handler.login);
+app.get('/index', handler.renderIndex);
 app.get('/*', handler.loginForm);
 
 module.exports = app;
