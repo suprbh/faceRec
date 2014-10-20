@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}},
-    password: {type: String, required: true}
+    password: {type: String}
 });
 
 var User = mongoose.model('User', userSchema);
@@ -17,12 +17,12 @@ User.prototype.comparePassword = function(attemptedPassword, callback) {
   });
 };
 
-userSchema.pre('save', function(next){
+/*userSchema.pre('save', function(next){
   bcrypt.hash(this.password, null, null, function(err, hash) {
     this.password = hash;
     next();
   });
-});
+});*/
 
 
 module.exports = User;
