@@ -1,6 +1,5 @@
 // The module object will be assigned to module.exports
-var EJS = require('EJS');
-console.log(typeof EJS);
+var fs = require('fs');
 var passwordModule = {
 
   // moduleName is how the server routes incoming HTTP requests,
@@ -9,31 +8,36 @@ var passwordModule = {
   
   // When a user wants to set up a module, this function is called and
   // rendered at GET easyAuth.com/password/setup
-  setupRender: function(){
+  setupRender: function(req, res){
     var options = {};
-    options.ajaxURL = '';
-    var el = new EJS({url: '/templates/setup.ejs'}).render(null);
-    return el;
+    console.log(fs.readdirSync('.'));
+    fs.readFile('./server/modules/password/views/setup.html', function(err, data){
+      if (err) throw err;
+      res.set('Content-Type', 'text/html');
+      res.send(data);
+    });
   },
 
   // When a user wants to login with a module, this function is called and
   // rendered for GET easyAuth.com/moduleName/login
-  authRender: function(postData){
+  authRender: function(req, res){
     var options = {};
-    options.ajaxURL = '';
-    var el = new EJS({url: '/templates/auth.ejs'}).render(null);
-    return el;
+    fs.readFile('./server/modules/password/views/setup.html', function(err, data){
+      if (err) throw err;
+      res.set('Content-Type', 'text/html');
+      res.send(data);
+    });
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
   // the server calls module.setup() with the request data. 
-  setup: function(){
+  setup: function(req, res, next){
 
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/moduleName/setup/,
   // the server calls module.setup() with the request data and the previous stored user data.
-  auth: function(){
+  auth: function(req, res, next){
     return false;
   },
 }
