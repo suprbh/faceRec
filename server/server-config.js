@@ -20,9 +20,6 @@ app.configure(function() {
   Define all routes here
  */
 
-// inject all module-specific routes
-require('./modules/user/user-routes.js')(app);
-
 // default route
 app.get('/*', function(req, res) {
   res.render('/login');
