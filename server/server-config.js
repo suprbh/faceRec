@@ -1,6 +1,8 @@
 var express = require('express');
 var partials = require('express-partials');
 var handler = require('./app/controllers/controller');
+var util = require('./app/lib/utility');
+
 var app = express();
 
 // connect to MongoDB
@@ -19,6 +21,8 @@ app.configure(function() {
 /*
   Define all routes here
  */
+app.get('/module/:module', util.checkUser, handler.dispatchModule);
+
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
 app.get('/index', handler.renderIndex);
