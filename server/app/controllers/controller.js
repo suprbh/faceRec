@@ -76,3 +76,60 @@ exports.dispatchModule = function (req, res) {
       }
     });
 };
+
+/**
+ * Read auth task document from the database
+ *
+ * @param username - username used to fetch a User document
+ * @param authName - the name of auth task to be read from the database
+ * @param callback - this callback function is invoked with three arguments (error, authTask, user) after read
+ */
+exports.readAuthTask = function(username, authName, callback) {
+  User.findOne({username: username})
+    .exec(function(err, user) {
+      if (err) {
+        console.error(err);
+      }
+
+      if (callback) {
+        callback(null, user.authName, user);
+      }
+    });
+};
+
+/**
+ * Saves a new auth task document to the database as a sub-document of User document. This method overwrites if the document already exists.
+ * If the given User document does not exist, a new User document gets created with the auth task.
+ *
+ * @param username - username used to fetch a User document
+ * @param authName - the name of a auth module object to be saved to the database.
+ * @param task - auth task object to be saved
+ * @param callback - this callback is called with three arguments (error, authTask, user) after save
+ */
+exports.saveAuthTask = function(username, authName, task, callback) {
+  User.findOne({username: username})
+    .exec(function(err, user) {
+      if (err) {
+        console.error(err);
+        callback(err);
+      }
+
+      if (!user) {
+        var user = new User({
+          username: username
+        });
+      }
+
+      user[authName] = [task];
+
+      user.save(function(err, user) {
+        if (err) {
+          console.error(err);
+        }
+
+        if (callback) {
+          callback(null, user.authName, user);
+        }
+      });
+    });
+};
