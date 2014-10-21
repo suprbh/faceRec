@@ -35,10 +35,12 @@ exports.login = function (req, res) {
           if( err ){
             return res.send(500, err);
           }
-          util.createSession(req, res, newUser);
+          util.createSession(req, res, username);
         });
       } else {
-        util.createSession(req, res, newUser);
+        // TODO: We should revisit this logic as redirecting to main index page blindly seems a bit strange
+        // I think it's perfectly acceptable to ask a new user to provide username/password to create their account here
+        util.createSession(req, res, username);
       }
     });
 };
