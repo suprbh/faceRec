@@ -22,7 +22,7 @@ var passwordModule = {
   // rendered for GET easyAuth.com/moduleName/login
   authRender: function(req, res){
     var options = {};
-    fs.readFile('./server/modules/password/views/setup.html', function(err, data){
+    fs.readFile('./server/modules/password/views/auth.html', function(err, data){
       if (err) throw err;
       res.set('Content-Type', 'text/html');
       res.send(data);
