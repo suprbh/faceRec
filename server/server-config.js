@@ -23,17 +23,16 @@ app.configure(function() {
  */
 app.get('/module/:module', util.checkUser, handler.dispatchModule);
 
-app.get('/login', handler.loginForm);
-app.post('/login', handler.login);
-app.get('/index', handler.renderIndex);
-app.get('/*', handler.loginForm);
-//app.get('/*', handler.loginForm);
-
-app.get('/modules/password', function(req, res){
-  var passwordModule = require('./modules/passwordModule/auth.js');
+/* Password module routes */
+app.get('/password/:action', util.checkUser, function(req, res){
+  var passwordModule = require('./modules/password/auth.js');
   var html = passwordModule.setupRender();
   res.send(html);
 });
 
+app.get('/login', handler.loginForm);
+app.post('/login', handler.login);
+app.get('/index', handler.renderIndex);
+app.get('/*', handler.loginForm);
 
 module.exports = app;
