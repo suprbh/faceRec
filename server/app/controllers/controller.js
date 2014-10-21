@@ -63,7 +63,7 @@ exports.dispatchModule = function (req, res) {
 
       if (user) {
         // TODO: This is a temp fix.  Once we have a working authentication module, we will invoke its module here
-        if (user['module']) {
+        if (user[module]) {
           res.render('face-auth');
         } else {
           res.render('face-setup');
