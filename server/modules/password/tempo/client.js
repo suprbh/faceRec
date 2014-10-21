@@ -8,11 +8,16 @@ $(function(){
       var currentTime = e.timeStamp;
       var delay = currentTime - previousTime;
       pairs[last.charCode] || (pairs[last.charCode] = {});
-      pairs[last.charCode][e.charCode] || (pairs[last.charCode][e.charCode] = []);
-      pairs[last.charCode][e.charCode].push(delay);
+      pairs[last.charCode][e.charCode] || (pairs[last.charCode][e.charCode] = {});
+      pairs[last.charCode][e.charCode].values.push(delay); //.average //.nValue
     } 
     last = e;
   };
+
+  //Checks if 
+  var check = function(){
+
+  }
 
   var submitPairs = function(){
     $.ajax({
