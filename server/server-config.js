@@ -24,11 +24,11 @@ app.configure(function() {
 app.get('/module/:module', util.checkUser, handler.dispatchModule);
 
 /* Password module routes */
-app.get('/password/:action', util.checkUser, function(req, res){
-  var passwordModule = require('./modules/password/auth.js');
-  var html = passwordModule.setupRender();
-  res.send(html);
-});
+var passwordModule = require('./modules/password/auth.js');
+app.get('/password/setup', util.checkUser, passwordModule.setupRender);
+app.get('/password/auth', util.checkUser, passwordModule.authRender);
+app.post('/password/setup', util.checkUser, passwordModule.setup);
+app.post('/password/auth', util.checkUser, passwordModule.auth);
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
