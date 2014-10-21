@@ -4,6 +4,7 @@
 
 var User = require('../models/model');
 var util = require('../lib/utility');
+var path = require('path');
 
 exports.loginForm = function (req, res) {
   res.render('login');
@@ -64,12 +65,8 @@ exports.dispatchModule = function (req, res) {
       }
 
       if (user) {
-        // TODO: This is a temp fix.  Once we have a working authentication module, we will invoke its module here
-        if (user[module]) {
-          res.render('face-auth');
-        } else {
-          res.render('face-setup');
-        }
+        var url = (user[module]) ? path.join(module, 'auth'): path.join(module, 'setup');
+        res.redirect(url);
       } else {
         console.log('Use account does not exist');
         res.redirect('/login');
