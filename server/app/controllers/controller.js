@@ -112,7 +112,7 @@ exports.saveAuthTask = function(username, authName, task, callback) {
       }
 
       if (!user) {
-        var user = new User({
+        user = new User({
           username: username
         });
       }

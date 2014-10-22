@@ -2,15 +2,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    concat: {
-    },
 
     mochaTest: {
       test: {
         options: {
           reporter: 'spec'
         },
-        src: ['server/test/serverSpec.js']
+        src: ['specs/server/**/*.js']
       }
     },
 
@@ -29,15 +27,16 @@ module.exports = function(grunt) {
 
     jshint: {
       files: [
-        // Add filespec list here
         'server.js',
-        'server/**/*.js'
+        'server/**/*.js',
+        'specs/**/*.js'
       ],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'lib/*.js'
+          'lib/*.js',
+          'server/modules/faceRecognition/lib/**/*.js'
         ]
       }
     },
@@ -52,12 +51,12 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'client/*.js',
-          'lib/*.js'
+          'server.js',
+          'server/**/*.js',
+          'client/*.js'
         ],
         tasks: [
-          // 'concat',
-          // 'uglify'
+          'test'
         ]
       },
       css: {
@@ -114,9 +113,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    // 'concat',
-    // 'uglify',
-    'cssmin',
     'jshint',
     'mochaTest'
   ]);
@@ -137,7 +133,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['build']);
 
   grunt.registerTask('all', ['build', 'upload']);
 
