@@ -14,11 +14,6 @@ $(function(){
     last = e;
   };
 
-  //Checks if 
-  var check = function(){
-
-  }
-
   var submitPairs = function(){
     $.ajax({
       type: 'post',

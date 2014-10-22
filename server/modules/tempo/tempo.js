@@ -1,1 +1,0 @@
-var gauss = require('gauss');
