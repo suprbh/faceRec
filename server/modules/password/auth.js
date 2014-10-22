@@ -1,6 +1,7 @@
 var fs = require('fs');
 var bcrypt = require('bcrypt-nodejs');
 var db = require('../../app/controllers/controller.js');
+var utils = require('../../app/lib/utility.js');
 
 var passwordModule = {
   
@@ -29,13 +30,13 @@ var passwordModule = {
   // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
   // the server calls module.setup() with the request data. 
   setup: function(req, res, next){
-    var username = req.body.username;
+    var username = req.session.username;
     var userProvidedPassword = req.body.password;
     utils.hashPassword(userProvidedPassword, function(userProvidedPasswordHash){
       var task = {};
       task.password = userProvidedPasswordHash;
       db.saveAuthTask(username, 'password', task, function(error, authTask, user){
-        //next()
+        res.redirect('/index');
       });
     });
   },
@@ -43,32 +44,20 @@ var passwordModule = {
   // When the server recieves an HTTP request to POST EasyAuth.com/moduleName/setup/,
   // the server calls module.setup() with the request data and the previous stored user data.
   auth: function(req, res, next){
-    var username = req.body.username;
+    var username = req.session.username;
     db.readAuthTask(username, 'password', function(error, authTask, user){
       var storedPasswordHash = user.password;
       var userProvidedPassword = req.body.password;
       var userProvidedPasswordHash = utils.hashPassword(userProvidedPassword);
       utils.comparePassword(userProvidedPassword, storedPasswordHash, function(isMatch){
         if (isMatch){
-          next();
+          //give token
         } else {
           res.status(403).send('Failed Authentication');
         }
       });
     });
   },
-}
-
-var utils = {};
-utils.comparePassword = function(userProvidedPasswordHash, storedPasswordHash, callback){
-  bcrypt.compare(userProvidedPasswordHash, storedPasswordHash, function(err, isMatch) {
-    callback(isMatch);
-  });
-};
-utils.hashPassword = function(userProvidedPassword, callback){
-  bcrypt.hash(userProvidedPassword, null, null, function(err, hash){
-    callback(hash);
-  });
 }
 
 module.exports = passwordModule;
