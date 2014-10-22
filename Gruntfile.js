@@ -78,7 +78,17 @@ module.exports = function(grunt) {
       upToProdServer: {
         command: 'git push azure master'
       }
+    },
+
+    jsdoc : {
+      dist : {
+        src: ['server/**/*.js'],
+        options: {
+          destination: 'doc'
+        }
+      }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -89,6 +99,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-jsdoc');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -114,7 +125,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'jshint',
-    'mochaTest'
+    'mochaTest',
+    'jsdoc'
   ]);
 
   grunt.registerTask('deploy', function(){
