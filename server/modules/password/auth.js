@@ -1,4 +1,3 @@
-// The module object will be assigned to module.exports
 var fs = require('fs');
 var bcrypt = require('bcrypt-nodejs');
 var db = require('../../app/controllers/controller.js');
