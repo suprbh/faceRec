@@ -1,5 +1,4 @@
 var fs = require('fs');
-var bcrypt = require('bcrypt-nodejs');
 var db = require('../../app/controllers/controller.js');
 var utils = require('../../app/lib/utility.js');
 
@@ -8,23 +7,13 @@ var passwordModule = {
   // When a user wants to set up a module, this function is called and
   // rendered at GET easyAuth.com/password/setup
   setupRender: function(req, res){
-    var options = {};
-    fs.readFile('./server/views/password/setup.html', function(err, data){
-      if (err) throw err;
-      res.set('Content-Type', 'text/html');
-      res.send(data);
-    });
+    res.render('password-setup');
   },
 
   // When a user wants to login with a module, this function is called and
   // rendered for GET easyAuth.com/moduleName/login
   authRender: function(req, res){
-    var options = {};
-    fs.readFile('./server/views/password/auth.html', function(err, data){
-      if (err) throw err;
-      res.set('Content-Type', 'text/html');
-      res.send(data);
-    });
+    res.render('password-auth');
   },
 
   // When the server recieves an HTTP request to POST EasyAuth.com/password/setup/
