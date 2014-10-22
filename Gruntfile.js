@@ -35,7 +35,8 @@ module.exports = function(grunt) {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'lib/*.js'
+          'lib/*.js',
+          'server/modules/faceRecognition/lib/**/*.js'
         ]
       }
     },
