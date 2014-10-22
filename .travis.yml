@@ -3,9 +3,12 @@ node_js:
   - "0.11"
   - "0.10"
 
+services:
+  - mongodb
+
 before_install: npm install -g grunt-cli
 install: npm install
-before_script: grunt build
+script: grunt test
 
 notifications:
   email:
