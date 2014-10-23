@@ -87,6 +87,20 @@ module.exports = function(grunt) {
           destination: 'doc'
         }
       }
+    }, 
+
+    bowercopy: {
+ 
+      libs: {
+        options: {
+          destPrefix: 'public/lib'
+        },
+        files: {
+          'jquery.min.js': 'jquery/jquery.min.js',
+          'underscore-min.js': 'underscore/underscore-min.js',
+          'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+        },
+      },
     }
 
   });
@@ -100,6 +114,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-bowercopy');
+
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -126,7 +142,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'jshint',
     'mochaTest',
-    'jsdoc'
+    'jsdoc', 
+    'bowercopy'
   ]);
 
   grunt.registerTask('deploy', function(){
