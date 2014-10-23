@@ -25,10 +25,10 @@ app.get('/module/:module', util.checkUser, handler.dispatchModule);
 
 /* Password module routes */
 var passwordModule = require('./modules/password/auth.js');
-app.get('/modules/password/setup', /*util.checkUser,*/ passwordModule.setupRender);
-app.get('/modules/password/auth', /*util.checkUser,*/ passwordModule.authRender);
-app.post('/modules/password/setup', /*util.checkUser,*/ passwordModule.setup);
-app.post('/modules/password/auth', /*util.checkUser,*/ passwordModule.auth);
+app.get('/modules/password/setup', util.checkUser, passwordModule.setupRender);
+app.get('/modules/password/auth', util.checkUser, passwordModule.authRender);
+app.post('/modules/password/setup', util.checkUser, passwordModule.setup);
+app.post('/modules/password/auth', util.checkUser, passwordModule.auth);
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
