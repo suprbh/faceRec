@@ -12,6 +12,10 @@ $(function(){
       pairs[last.charCode][e.charCode].values.push(delay); //.average //.nValue
     } 
     last = e;
+    checkForCompletion();
+  };
+
+  var checkForCompletion = function (){
   };
 
   var submitPairs = function(){
