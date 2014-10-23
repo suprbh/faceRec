@@ -22,9 +22,9 @@ $(function(){
     $.ajax({
       type: 'post',
       data: JSON.stringify(pairs),
-      url: [host, 'modules', module].join('/');
+      url: [host, 'modules', module].join('/'),
       success: function(code){console.log(code);},
-      error: function(err){console.log(err));}
+      error: function(err){console.log(err);},
       contentType: 'application/JSON'
     });
   };

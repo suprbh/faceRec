@@ -20,10 +20,10 @@ app.configure(function() {
   app.use(express.cookieParser('shhhh, very secret'));
   app.use(express.session());
 });
-
 /*
   Define all routes here
  */
+
 app.get('/module/:module', util.checkUser, handler.dispatchModule);
 
 /* Password module routes */
@@ -38,7 +38,6 @@ app.get('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setupRender);
 app.get('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.authRender);
 app.post('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setup);
 app.post('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.auth);
-
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);

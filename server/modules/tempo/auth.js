@@ -18,7 +18,7 @@ module.exports = {
     });
   },
   auth: function(req, res){
-
+    //if median is within the interval, accept.
   }
 }
 
