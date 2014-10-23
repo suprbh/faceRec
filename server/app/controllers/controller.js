@@ -89,7 +89,11 @@ exports.readAuthTask = function(username, authName, callback) {
       }
 
       if (callback) {
-        callback(null, user.authName, user);
+        if (user[authName].length > 0) {
+          callback(null, user[authName][0], user);
+        } else {
+          callback(null, null, user);
+        }
       }
     });
 };
@@ -125,7 +129,11 @@ exports.saveAuthTask = function(username, authName, task, callback) {
         }
 
         if (callback) {
-          callback(null, user.authName, user);
+          if (user[authName].length > 0) {
+            callback(null, user[authName][0], user);
+          } else {
+            callback(null, null, user);
+          }
         }
       });
     });
