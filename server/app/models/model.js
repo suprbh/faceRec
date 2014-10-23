@@ -1,11 +1,19 @@
 var mongoose = require('mongoose');
 
-var userSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}},
-    password: {type: String}
+    password: {type: String},
+    fakeAuth: [ FaceAuthSchema ]
 });
+var User = mongoose.model('User', UserSchema);
 
-var User = mongoose.model('User', userSchema);
+/*
+  Note: This is an ugly solution to extend UserSchema to run our unit tests
+        We will remove this schema once we figure out a way to extend UserSchema dynamically
+ */
+var FaceAuthSchema = new mongoose.Schema({
+  picture: String
+});
 
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {

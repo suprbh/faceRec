@@ -84,7 +84,6 @@ describe('Server-side integration test suite', function() {
         .end(function() {
           User.findOne({username: username})
             .exec(function(err, user) {
-              console.log('user', user);
               expect(user).not.to.be.null;
               expect(user.username).to.be.equal(username);
               done();
