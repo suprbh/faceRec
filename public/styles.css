@@ -1,29 +1,17 @@
-
 body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
 }
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin-heading {
-	font-family: Arial black;
-	margin-bottom: 20px;
-	font-size: 50px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
+h1, h2 {
   text-align: center;
+  font-family: Arial black;
+  margin-bottom: 15px;
+  font-size: 50px;
 }
-.form-signin .form-control {
+/*
+.form {
+  text-align: center;
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -32,11 +20,58 @@ body {
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
+p {
+  text-align: center;
+}*/
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+
 }
-.form-signin input[type="email"] {
+
+.form-signin-heading {
+  font-family: Arial black;
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.form-signin .form-control {
+  position: relative;
+  margin-left: 20%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+/*.form-signin .form-control:focus {
+  z-index: 2;
+}*/
+.form-signin .button {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+.button {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+.row {
+  margin-left: 15%;
+}
+.face {
+  float: left;
+  width: 25%;
+}
+.password {
+  float: left;
+  width: 50%;
+}
+.typing {
+  float: left;
+  width: 25%;
 }

@@ -13,7 +13,7 @@ app.configure(function() {
   app.set('view engine', 'ejs');
   app.use(partials());
   app.use(express.bodyParser());
-  app.use(express.static(process.cwd() + '/client'));
+  app.use(express.static(process.cwd() + '/public'));
   app.use(express.cookieParser('shhhh, very secret'));
   app.use(express.session());
 });
