@@ -36,6 +36,7 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
         ignores: [
           'lib/*.js',
+          'server/public/**/*.js',
           'server/modules/faceRecognition/lib/**/*.js'
         ]
       }
@@ -92,7 +93,7 @@ module.exports = function(grunt) {
     bowercopy: {
       libs: {
         options: {
-          destPrefix: 'public/lib'
+          destPrefix: 'server/public/lib'
         },
         files: {
           'jquery.min.js': 'jquery/jquery.min.js',
