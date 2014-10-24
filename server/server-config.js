@@ -1,5 +1,6 @@
 var express = require('express');
 var partials = require('express-partials');
+var morgan = require('morgan');
 var handler = require('./app/controllers/controller');
 var util = require('./app/lib/utility');
 var passwordModule = require('./modules/password/auth.js');
@@ -13,6 +14,7 @@ app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(partials());
+  app.use(morgan('dev'));
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser('shhhh, very secret'));
