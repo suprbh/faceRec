@@ -7,14 +7,17 @@ var util = require('../lib/utility');
 var path = require('path');
 
 exports.loginForm = function (req, res) {
+  console.log("loginForm");
   res.render('login');
 };
 
 exports.signupForm = function (req, res) {
+  console.log("signupForm");
   res.render('signup');
 };
 
 exports.renderIndex = function (req, res) {
+  console.log("renderIndex");
   res.render('index');
 };
 
