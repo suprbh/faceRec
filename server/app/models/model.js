@@ -15,6 +15,14 @@ var FaceAuthSchema = new mongoose.Schema({
   picture: String
 });
 
+var PasswordAuthSchema = new mongoose.Schema({
+  password: String
+});
+
+var TempoAuthSchema = new mongoose.Schema({
+  pairs: {code: {code: Array }}
+});
+
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
     if (err) {
