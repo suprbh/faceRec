@@ -26,8 +26,6 @@ var TempoAuthSchema = new mongoose.Schema({
 
 var TempoObject = mongoose.model('tempoObjects', TempoAuthSchema);
 
-
-
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
     if (err) {
