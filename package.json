@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/mountain-device/mountain-device",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "ejs": "~0.8.5",
     "express": "~3.4.8",
     "express-partials": "~0.2.0",
