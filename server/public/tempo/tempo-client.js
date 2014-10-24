@@ -13,10 +13,9 @@ $(function(){
       pairs[last.keyCode][e.keyCode].push(delay); //.average //.nValue
     } 
     last = e;
-    checkForCompletion();
-  };
-
-  var checkForCompletion = function (){
+    $('#text-area').text(
+      $('#text-area').text() + e.keyCode + ' ' 
+    );
   };
 
   var submitPairs = function(e){

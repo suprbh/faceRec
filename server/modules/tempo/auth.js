@@ -1,4 +1,5 @@
 var gauss = require('gauss');
+var utils = require('../../app/lib/utility.js');
 var db = require('../../app/controllers/controller.js');
 var model = require('../../app/models/model.js');
 var fs = require('fs');
@@ -13,7 +14,7 @@ module.exports = {
     res.render('tempo/tempo-auth');
   },
   setup: function(req, res){
-    var username = 'someUsername7';
+    var username = req.session.username || 'test_user';
     var userPairs = req.body;
     var task = {};
     task.pairs = userPairs;
@@ -23,7 +24,7 @@ module.exports = {
     res.send('got it!');
   },
   auth: function(req, res){
-    var username = 'someUsername7';
+    var username = req.session.username || 'test_user';
     var submittedUserPairs = req.body;
     db.readAuthTask(username, 'tempo', function(error, authTask, user){
       var referenceUserPairs = authTask.pairs;
@@ -63,7 +64,9 @@ tempoUtils.compareSamples = function(submittedUserPairs, referenceUserPairs, cal
         if (referenceMedians[firstKey].hasOwnProperty(secondKey)){
           var referenceMedian = referenceMedians[firstKey][secondKey];
           var submissionMedian = submissionMedians[firstKey][secondKey];
-          percentDifferences.push((Math.abs(referenceMedian - submissionMedian)/referenceMedian))
+          var percentDifference = Math.abs(referenceMedian - submissionMedian)/
+                                            ((referenceMedian + submissionMedian)/2);
+          percentDifferences.push(percentDifference);
         }
       }
     }
