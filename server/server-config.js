@@ -3,6 +3,7 @@ var partials = require('express-partials');
 var handler = require('./app/controllers/controller');
 var util = require('./app/lib/utility');
 var passwordModule = require('./modules/password/auth.js');
+var faceModule = require('./modules/faceRecognition/auth.js');
 
 var app = express();
 
@@ -29,6 +30,12 @@ app.get('/modules/password/setup', util.checkUser, passwordModule.setupRender);
 app.get('/modules/password/auth', util.checkUser, passwordModule.authRender);
 app.post('/modules/password/setup', util.checkUser, passwordModule.setup);
 app.post('/modules/password/auth', util.checkUser, passwordModule.auth);
+
+/* Face recognition module routes */
+app.get('/modules/face/setup', util.checkUser, faceModule.setupRender);
+app.get('/modules/face/auth', util.checkUser, faceModule.authRender);
+app.post('/modules/face/setup', util.checkUser, faceModule.setup);
+app.post('/modules/face/auth', util.checkUser, faceModule.auth);
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
