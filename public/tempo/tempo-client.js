@@ -18,17 +18,17 @@ $(function(){
   var checkForCompletion = function (){
   };
 
-  var submitPairs = function(){
+  var submitPairs = function(e){
+    e.preventDefault();
     $.ajax({
       type: 'post',
       data: JSON.stringify(pairs),
-      url: [host, 'modules', module].join('/'),
+      url: "",
       success: function(code){console.log(code);},
       error: function(err){console.log(err);},
       contentType: 'application/JSON'
     });
   };
-
   $(document).on( 'keypress', handleKeyPress);
-  $('form').on( 'submit', submitPairs);
+  $('form').on('submit', submitPairs);
 });

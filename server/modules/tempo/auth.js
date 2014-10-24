@@ -13,9 +13,10 @@ module.exports = {
     var userPairs = req.body;
     var task = {};
     task.intervals = tempoUtils.calculateIntervals(userPairs);
-    db.saveAuthTask(username, 'password', task, function(error, authTask, user){
-      res.redirect('/index');
-    });
+    // db.saveAuthTask(username, 'password', task, function(error, authTask, user){
+    //   res.redirect('/index');
+    // });
+    res.send('got it!');
   },
   auth: function(req, res){
     //if median is within the interval, accept.
@@ -24,5 +25,4 @@ module.exports = {
 
 var tempoUtils = {};
 tempoUtils.calculateIntervals = function(pairs){
-  return intervals;
 };
