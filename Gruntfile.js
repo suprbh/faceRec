@@ -44,8 +44,8 @@ module.exports = function(grunt) {
 
     cssmin: {
       build: {
-        src: 'client/style.css',
-        dest: 'client/dist/style-min.css'
+        src: 'public/styles.css',
+        dest: 'public/dist/style-min.css'
       }
     },
 
@@ -54,21 +54,21 @@ module.exports = function(grunt) {
         files: [
           'server.js',
           'server/**/*.js',
-          'client/*.js'
+          'public/*.js'
         ],
         tasks: [
           'test'
         ]
       },
       css: {
-        files: 'client/*.css',
+        files: 'public/*.css',
         tasks: ['cssmin']
       }
     },
     concat: {   
       libs: {
-        src: ['client/lib/underscore.js', 'client/lib/jquery.js', 'bootstrap.mim.css'],
-        dest: 'client/dist/client-libs.js'
+        src: ['public/lib/underscore-min.js', 'public/lib/jquery.min.js', 'public/lib/bootstrap.min.css'],
+        dest: 'public/dist/public-libs.js'
       }
     },
 
