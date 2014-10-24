@@ -2,6 +2,7 @@ var express = require('express');
 var partials = require('express-partials');
 var handler = require('./app/controllers/controller');
 var util = require('./app/lib/utility');
+var passwordModule = require('./modules/password/auth.js');
 
 var app = express();
 
@@ -13,7 +14,7 @@ app.configure(function() {
   app.set('view engine', 'ejs');
   app.use(partials());
   app.use(express.bodyParser());
-  app.use(express.static(process.cwd() + '/public'));
+  app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser('shhhh, very secret'));
   app.use(express.session());
 });
@@ -24,7 +25,6 @@ app.configure(function() {
 app.get('/module/:module', util.checkUser, handler.dispatchModule);
 
 /* Password module routes */
-var passwordModule = require('./modules/password/auth.js');
 app.get('/modules/password/setup', util.checkUser, passwordModule.setupRender);
 app.get('/modules/password/auth', util.checkUser, passwordModule.authRender);
 app.post('/modules/password/setup', util.checkUser, passwordModule.setup);
