@@ -32,6 +32,7 @@ app.post('/modules/password/auth', util.checkUser, passwordModule.auth);
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
+app.get('/signup', handler.signupForm);
 app.get('/index', handler.renderIndex);
 app.get('/', handler.loginForm);
 
