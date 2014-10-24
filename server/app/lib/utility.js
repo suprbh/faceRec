@@ -1,11 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
 
-var rValidUrl = /^(?!mailto:)(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))|localhost)(?::\d{2,5})?(?:\/[^\s]*)?$/i;
-
-var isValidUrl = function(url) {
-  return url.match(rValidUrl);
-};
-
 var isLoggedIn = function(req) {
   return req.session ? !!req.session.user : false;
 };
@@ -42,14 +36,12 @@ exports.hashPassword = function(userProvidedPassword, callback){
 };
 
 /**
- * This util function generates an authentication token
- *
- * @param callback - callback function to be invoked once auth token is generated
+ * Error handler used to send error message to the client with 500 status code
+ * @param req
+ * @param res
+ * @param {Object} error - error object to be sent to the client
  */
-exports.generateAuthToken = function(callback) {
-  var token = 'fakeToken';
-
-  if (callback) {
-    callback(token);
-  }
+exports.errorHandler = function(error, req, res, next) {
+  res.send(500, {error: error.message});
 };
+
