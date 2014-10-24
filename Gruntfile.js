@@ -90,7 +90,6 @@ module.exports = function(grunt) {
     }, 
 
     bowercopy: {
- 
       libs: {
         options: {
           destPrefix: 'public/lib'
@@ -99,10 +98,9 @@ module.exports = function(grunt) {
           'jquery.min.js': 'jquery/jquery.min.js',
           'underscore-min.js': 'underscore/underscore-min.js',
           'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
-        },
-      },
+        }
+      }
     }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -115,7 +113,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-bowercopy');
-
+  grunt.loadNpmTasks('grunt-npm-install');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -140,10 +138,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'npm-install',
+    'bowercopy',
     'jshint',
     'mochaTest',
-    'jsdoc', 
-    'bowercopy'
+    'jsdoc'
   ]);
 
   grunt.registerTask('deploy', function(){
@@ -156,7 +155,6 @@ module.exports = function(grunt) {
     if(grunt.option('prod')) {
       // add your production server task here
       grunt.task.run(['deploy']);
-
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
