@@ -12,7 +12,7 @@ var passwordModule = {
  * @param res
  */
   setupRender: function(req, res){
-    res.render('password-setup');
+    res.render('password/password-setup');
   },
 
 /**
@@ -23,7 +23,7 @@ var passwordModule = {
  * @param res
  */
   authRender: function(req, res){
-    res.render('password-auth');
+    res.render('password/password-auth');
   },
 
 /**
