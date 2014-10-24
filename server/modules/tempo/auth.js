@@ -1,5 +1,6 @@
 var gauss = require('gauss');
 var db = require('../../app/controllers/controller.js');
+var model = require('../../app/models/model.js');
 var fs = require('fs');
 
 var REQUIRED_MEAN_SIMILARITY = .5;
@@ -12,24 +13,20 @@ module.exports = {
     res.render('tempo/tempo-auth');
   },
   setup: function(req, res){
-    var username = 'someUsername2';
+    var username = 'someUsername7';
     var userPairs = req.body;
-    // var userIntervals = tempoUtils.findIntervals(userPairs);
-    // var task = {};
-    // task = userPairs;
-    // db.saveAuthTask(username, 'tempo', {data:'string'}, function(error, authTask, user){
-    //    console.log(user.tempo);
-    // });
-    fs.writeFile('data.json', JSON.stringify(req.body), function(err){
-      console.log('saved to disk');
+    var task = {};
+    task.pairs = userPairs;
+    db.saveAuthTask(username, 'tempo', task, function(error, authTask, user){
+       if (error) console.log(error);
     });
     res.send('got it!');
   },
   auth: function(req, res){
-    var username = 'someUsername2';
+    var username = 'someUsername7';
     var submittedUserPairs = req.body;
-    fs.readFile('data.json', function(err, data){
-      var referenceUserPairs = JSON.parse(data);
+    db.readAuthTask(username, 'tempo', function(error, authTask, user){
+      var referenceUserPairs = authTask.pairs;
       tempoUtils.compareSamples(submittedUserPairs, referenceUserPairs, function(isMatch){
         if (isMatch){
           res.send('success');
@@ -38,10 +35,6 @@ module.exports = {
         }
       });
     });
-
-    // db.readAuthTask(username, 'tempo', function(error, authTask, user){
-    //   console.log()
-    // });
   }
 }
 
@@ -77,6 +70,7 @@ tempoUtils.compareSamples = function(submittedUserPairs, referenceUserPairs, cal
   }
   var percentDifferencesVector = gauss.Vector(percentDifferences);
   var percentDifferencesMean = percentDifferencesVector.mean();
+  console.log(percentDifferencesMean, REQUIRED_MEAN_SIMILARITY);
   if (percentDifferencesMean < REQUIRED_MEAN_SIMILARITY){
     callback(true);
   } else {

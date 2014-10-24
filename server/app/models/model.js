@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String},
-    fakeAuth: [ FaceAuthSchema ]
+    fakeAuth: [ FaceAuthSchema ],
+    tempo: [TempoObject]
 });
 var User = mongoose.model('User', UserSchema);
 
@@ -20,8 +21,12 @@ var PasswordAuthSchema = new mongoose.Schema({
 });
 
 var TempoAuthSchema = new mongoose.Schema({
-  pairs: {code: {code: Array }}
+  pairs: mongoose.Schema.Types.Mixed
 });
+
+var TempoObject = mongoose.model('tempoObjects', TempoAuthSchema);
+
+
 
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
