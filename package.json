@@ -13,13 +13,13 @@
   },
   "homepage": "https://github.com/mountain-device/mountain-device",
   "dependencies": {
+    "ejs": "~0.8.5",
     "express": "~3.4.8",
     "express-partials": "~0.2.0",
-    "ejs": "~0.8.5",
-    "request": "^2.34.0",
-    "bcrypt-nodejs": "0.0.3",
+    "jwt-simple": "^0.2.0",
     "mongoose": "~3.8.8",
-    "bluebird": "1.0.8"
+    "morgan": "^1.4.1",
+    "request": "^2.34.0"
   },
   "devDependencies": {
     "chai": "^1.9.0",
