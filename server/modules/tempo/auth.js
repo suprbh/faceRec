@@ -2,6 +2,8 @@ var gauss = require('gauss');
 var db = require('../../app/controllers/controller.js');
 var fs = require('fs');
 
+var REQUIRED_MEAN_SIMILARITY = .5;
+
 module.exports = {
   setupRender: function(req, res){
     res.render('tempo/tempo-setup');
@@ -68,7 +70,7 @@ tempoUtils.compareSamples = function(submittedUserPairs, referenceUserPairs, cal
         if (referenceMedians[firstKey].hasOwnProperty(secondKey)){
           var referenceMedian = referenceMedians[firstKey][secondKey];
           var submissionMedian = submissionMedians[firstKey][secondKey];
-          percentDifferences.push(Math.round((Math.abs(referenceMedian - submissionMedian)/referenceMedian)*100))
+          percentDifferences.push((Math.abs(referenceMedian - submissionMedian)/referenceMedian))
         }
       }
     }
