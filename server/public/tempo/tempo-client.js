@@ -2,14 +2,15 @@ $(function(){
   var pairs = {}; 
   var last; 
 
-  var handleKeyPress = function(e){
+  var handleKeyDown = function(e){
+    e.preventDefault();
     if (last) {
       var previousTime = last.timeStamp;
       var currentTime = e.timeStamp;
       var delay = currentTime - previousTime;
-      pairs[last.charCode] || (pairs[last.charCode] = {});
-      pairs[last.charCode][e.charCode] || (pairs[last.charCode][e.charCode] = []);
-      pairs[last.charCode][e.charCode].push(delay); //.average //.nValue
+      pairs[last.keyCode] || (pairs[last.keyCode] = {});
+      pairs[last.keyCode][e.keyCode] || (pairs[last.keyCode][e.keyCode] = []);
+      pairs[last.keyCode][e.keyCode].push(delay); //.average //.nValue
     } 
     last = e;
     checkForCompletion();
@@ -29,6 +30,6 @@ $(function(){
       contentType: 'application/JSON'
     });
   };
-  $(document).on( 'keypress', handleKeyPress);
+  $(document).on( 'keydown', handleKeyDown);
   $('form').on('submit', submitPairs);
 });

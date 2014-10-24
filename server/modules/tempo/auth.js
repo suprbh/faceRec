@@ -9,20 +9,34 @@ module.exports = {
     res.render('tempo/tempo-auth');
   },
   setup: function(req, res){
-    var username = req.session.username;
+    var username = 'someUsername';
     var userPairs = req.body;
+    var userIntervals = tempoUtils.findIntervals(userPairs);
     var task = {};
-    task.intervals = tempoUtils.calculateIntervals(userPairs);
-    // db.saveAuthTask(username, 'password', task, function(error, authTask, user){
-    //   res.redirect('/index');
-    // });
+    task = userPairs;
+    db.saveAuthTask(username, 'tempo', task, function(error, authTask, user){
+       if (error) throw error;
+       //console.log('stored: ', authTask);
+    });
     res.send('got it!');
   },
   auth: function(req, res){
-    //if median is within the interval, accept.
+    var username = 'someUsername';
+    var submittedUserPairs = req.body;
+    db.readAuthTask(username, 'tempo', function(error, authTask, user){
+      var storedUserPairs = authTask;
+      //console.log('recalled: ', authTask);
+    });
   }
 }
 
 var tempoUtils = {};
-tempoUtils.calculateIntervals = function(pairs){
+tempoUtils.findIntervals = function(userPairs){
+  for (var firstKey in userPairs){
+    for (var secondKey in userPairs[firstKey]){
+      var sample = userPairs[firstKey][secondKey];
+      var set = new gauss.Vector(sample);
+      //console.log(firstKey, '->', secondKey, ': ', '(', set.median(), ')',  set);
+    }
+  }
 };
