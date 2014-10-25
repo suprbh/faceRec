@@ -5,7 +5,7 @@ var model = require('../../app/models/model.js');
 var fs = require('fs');
 
 // This is the constant percent-similarity required for authentication. 
-var REQUIRED_MEAN_SIMILARITY = .5;
+var REQUIRED_MEAN_SIMILARITY = 0.5;
 
 module.exports = {
   /**
