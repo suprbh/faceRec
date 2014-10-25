@@ -1,5 +1,5 @@
 body {
-  padding-top: 40px;
+  padding-top: 30px;
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -8,8 +8,12 @@ h1, h2 {
   font-family: Arial black;
   margin-bottom: 15px;
   font-size: 50px;
+
 }
-/*
+h2 {
+  font-size: 40px; 
+}
+
 .form {
   text-align: center;
   position: relative;
@@ -22,7 +26,7 @@ h1, h2 {
 }
 p {
   text-align: center;
-}*/
+}
 
 .form-signin {
   max-width: 330px;
@@ -39,7 +43,7 @@ p {
 
 .form-signin .form-control {
   position: relative;
-  margin-left: 20%;
+  margin-bottom: 5%;
   height: auto;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -50,6 +54,7 @@ p {
 /*.form-signin .form-control:focus {
   z-index: 2;
 }*/
+
 .form-signin .button {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -60,18 +65,13 @@ p {
   width: 50%;
   text-align: center;
 }
-.row {
-  margin-left: 15%;
+.row h3{
+  text-align: center;
 }
-.face {
-  float: left;
-  width: 25%;
+.row div {
+  float:left;
+  width:33%;
 }
-.password {
-  float: left;
-  width: 50%;
-}
-.typing {
-  float: left;
-  width: 25%;
+.row img {
+  margin-left: 26%
 }
