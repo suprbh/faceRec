@@ -53,21 +53,30 @@ var faceModule = {
     });
 
     cv.readImage(faceModule.imagesPath+'out.png', function(err, im){
-      // var matrix = cv.Matrix.prototype;
-      console.log("im: ", im);
+
       im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
 
         for (var i=0;i<faces.length; i++){
 
-          var face = faces[i]
+          var face = faces[i];
           // var newIm = im.crop(face.x, face.y, face.width, face.height);
           // newIm.save(faceModule.imagesPath+'out.jpg');
-
-          console.log("cropped image saved to: ", faceModule.imagesPath + 'out_crop.png');
+          var newIm = im.roi(face.x, face.y, face.width, face.height);
+          newIm.resize(213, 213, 'CV_INTER_CUBIC');
+          var grey = new cv.Matrix;
+          // newIm.cvtColor('CV_BGR2GRAY');
+          // im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], COLOR, 2);
+          newIm.save(faceModule.imagesPath+'test.png');
 
           // train data
-          // faceModule.readTrainingData(faceModule.imagesPath);
+          console.log("cropped image saved to: ", faceModule.imagesPath + 'test.png');
+          // store to Database by username, label
+
         }
+
+        // train data
+        // faceModule.readTrainingData(faceModule.imagesPath);
+
       });
 
     });
@@ -153,18 +162,22 @@ var faceModule = {
  */
   auth: function(req, res){
     var username = req.session.username;
-    db.readAuthTask(username, 'face', function(error, authTask, user){
-      var storedFace = user.face;
-      var userProvidedFace = req.body.face;
-      var userProvidedPasswordHash = utils.hashPassword(userProvidedPassword);
-      utils.predictFace(userProvidedFace, storedFace, function(isMatch){
-        if (isMatch){
-          //give token
-        } else {
-          res.status(403).send('Failed Authentication');
-        }
-      });
-    });
+
+    // train data
+    faceModule.readTrainingData(faceModule.imagesPath);
+    
+    // db.readAuthTask(username, 'face', function(error, authTask, user){
+    //   var storedFace = user.face;
+    //   var userProvidedFace = req.body.face;
+    //   var userProvidedPasswordHash = utils.hashPassword(userProvidedPassword);
+    //   utils.predictFace(userProvidedFace, storedFace, function(isMatch){
+    //     if (isMatch){
+    //       //give token
+    //     } else {
+    //       res.status(403).send('Failed Authentication');
+    //     }
+    //   });
+    // });
   },
 }
 
