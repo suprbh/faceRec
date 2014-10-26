@@ -26,10 +26,10 @@
 //   var successCallback = function(stream) {
 //     console.log("successCallback");
 
-//     if (App.video.mozSrcObject !== undefined) {
-//         App.video.mozSrcObject = stream;
-//     } else {
-//         App.video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+//       if (App.video.mozSrcObject !== undefined) {
+//           App.video.mozSrcObject = stream;
+//       } else {
+//           App.video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
 //     };
 
 //      // Do something with the video here, e.g. video.play()

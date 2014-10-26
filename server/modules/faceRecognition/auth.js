@@ -2,7 +2,8 @@ var fs = require('fs');
 var db = require('../../app/controllers/controller.js');
 var utils = require('../../app/lib/utility.js');
 var fr = require('./scripts/script.js');
-var cv = require('./lib/opencv');
+// var cv = require('./lib/opencv.node');
+var cv = require('opencv');
 
 var faceModule = {
   
@@ -16,27 +17,93 @@ var faceModule = {
   setupRender: function(req, res){
     console.log("face setupRender");
 
-    cv.readImage('./data/sha0.jpg', function(err, im) {
-      if (err) throw err;
-      console.log("cv.readImage: ", im);
-      
-      if (im.width() < 1 || im.height() < 1) throw new Error('Image has no size');
+    // if you need to call the prototype methods, use "new cv.FaceRecognizer;"
+    faceModule.initFaceDetect();
 
-      // im.detectObject('../data/haarcascade_frontalface_alt2.xml', {}, function(err, faces) {
-      //   if (err) throw err;
+    res.render('face/face-setup');
+  },
 
-        // for (var i = 0; i < faces.length; i++) {
-        //   face = faces[i];
-        //   im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], COLOR, 2);
-        // }
+  initFaceDetect: function() {
 
-        // im.save('./tmp/face-detection-rectangle.png');
-        // console.log('Image saved to ./tmp/face-detection-rectangle.png');
-      // });
+    faceModule.opencvVersion = cv.version;
+    faceModule.imagesPath = __dirname + "/data/";
+    // faceModule.capture = new cv.VideoCapture(0);
+
+  },
+
+  imageCapture: function(req, res) {
+
+    var username = req.session.username;
+    console.log("username: ", username);
+
+    var buffer ='';
+    req.on('data', function(data){
+      buffer += data;
+    });
+
+    req.on('end', function(){
+        var base64Data = JSON.parse(buffer).replace(/^data:image\/png;base64,/, "");
+        fs.writeFile(faceModule.imagesPath+'out.png', base64Data, 'base64', function(err){
+            if(err){
+                console.log(err);
+            }
+            console.log("Written to file: ", faceModule.imagesPath+'out.png');
+            res.send(200, "Success writing to file");
+        });
+    });
+
+    cv.readImage(faceModule.imagesPath+'out.png', function(err, im){
+      // var matrix = cv.Matrix.prototype;
+      console.log("im: ", im);
+      im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
+
+        for (var i=0;i<faces.length; i++){
+
+          var face = faces[i]
+          // var newIm = im.crop(face.x, face.y, face.width, face.height);
+          // newIm.save(faceModule.imagesPath+'out.jpg');
+
+          console.log("cropped image saved to: ", faceModule.imagesPath + 'out_crop.png');
+
+          // train data
+          // faceModule.readTrainingData(faceModule.imagesPath);
+        }
+      });
 
     });
 
-    res.render('face/face-setup');
+  },
+
+  readTrainingData: function(path) {
+    var filePath = path + "pp_file.csv";
+
+    fs.readFile(filePath, function(err, buffer){
+      if(err) console.log(err);
+
+      var data = buffer.toString( "utf8", 0, buffer.length );
+      // console.log("file data: ", data);
+      
+      var lines = data.trim().split('\n');
+      var images = [];
+      var labels = [];
+      var tupleList = [];
+
+      for (var row = 0; row < lines.length; row++){
+        var cols = lines[row].split(';');
+        
+        tupleList.push([parseInt(cols[1]), cols[0]]);
+      }
+
+      console.log("tupleList: ", tupleList);
+      // train data
+      var faceRec = cv.FaceRecognizer; 
+      var model = faceRec.createFisherFaceRecognizer();
+      model.trainSync(tupleList);
+
+      var predict = model.predictSync(__dirname + "/data/vandi0.jpg");
+      console.log("prediction: id, confidence: ", predict.id, predict.confidence);
+    });
+
   },
 
 /**
@@ -69,19 +136,7 @@ var faceModule = {
     // });
     // var userProvidedface = req.body;
     // console.log("Inside face/setup: ", userProvidedface);
-    var buffer ='';
-    req.on('data', function(data){
-      buffer += data;
-    });
-
-    req.on('end', function(){
-        var dataBuffer = new Buffer(buffer, 'base64');
-        fs.writeFile('copy.png', dataBuffer, function(err){
-            if(err){
-                console.log(err);
-            }
-        });
-    });
+    
 
     // Add face to database of faces using opencv
     res.redirect('/index');
