@@ -28,7 +28,7 @@ app.get('/modules/:module', util.checkUser, handler.dispatchModule);
 
 /* Password module routes */
 app.get('/modules/face/setup', util.checkUser, function(req, res){
-  res.send('<html><body><h1> It could be you who implements this feature!</h1></body></html>');
+  res.send('<html><body><h1> It could be you who finishes implementing this feature!</h1></body></html>');
 });
 
 /* Password module routes */
