@@ -32,18 +32,12 @@ app.get('/modules/password/auth', util.checkUser, passwordModule.authRender);
 app.post('/modules/password/setup', util.checkUser, passwordModule.setup);
 app.post('/modules/password/auth', util.checkUser, passwordModule.auth);
 
-/* Face recognition module routes */
 /* tempo module routes */
 var tempoModule = require('./modules/tempo/auth.js');
 app.get('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setupRender);
 app.get('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.authRender);
 app.post('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setup);
 app.post('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.auth);
-app.get('/modules/face/auth', util.checkUser, faceModule.authRender);
-app.get('/modules/face/capture', util.checkUser, faceModule.imageCapture);
-app.post('/modules/face/capture', util.checkUser, faceModule.imageCapture);
-app.post('/modules/face/setup', util.checkUser, faceModule.setup);
-app.post('/modules/face/auth', util.checkUser, faceModule.auth);
 
 /* Face recognition module routes */
 app.get('/modules/face/setup', util.checkUser, faceModule.setupRender);
