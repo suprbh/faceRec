@@ -62,7 +62,7 @@ module.exports = {
       var referenceUserPairs = authTask.pairs;
       tempoUtils.compareSamples(submittedUserPairs, referenceUserPairs, function(isMatch){
         if (isMatch){
-          utils.sendResponse(res, username)
+          utils.sendResponse(res, username);
         } else {
           res.status(403).send('Failed Authentication');
         }
