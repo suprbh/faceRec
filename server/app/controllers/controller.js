@@ -111,6 +111,9 @@ exports.readAuthTask = function(username, authName, callback) {
  * @param callback - this callback is called with three arguments (error, authTask, user) after save
  */
 exports.saveAuthTask = function(username, authName, task, callback) {
+  if (username === undefined){
+    throw 'Cannot store undefined user';
+  }
   User.findOne({username: username})
     .exec(function(err, user) {
       if (err) {
