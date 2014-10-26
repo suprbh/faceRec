@@ -3,7 +3,7 @@ var gauss = require('gauss');
 
 
 // This is the constant percent-similarity required for authentication. 
-var REQUIRED_MEAN_SIMILARITY = 0.5;
+var REQUIRED_MEAN_SIMILARITY = 0.4;
 /**
  * This function takes a Tempo object, and returns the median delay 
  *  for each keyCode-pair.
@@ -63,7 +63,8 @@ tempoUtils.compareSamples = function(submittedUserPairs, referenceUserPairs, cal
   // Use the Gauss stats library to find the mean of the differences for each pair, 
   var percentDifferencesVector = gauss.Vector(percentDifferences);
   var percentDifferencesMean = percentDifferencesVector.mean();
-  // and if the percent difference is low enough, authenticate the user. 
+  // and if the percent difference is low enough, authenticate the user.
+  console.log(percentDifferencesMean, REQUIRED_MEAN_SIMILARITY);  
   if (percentDifferencesMean < REQUIRED_MEAN_SIMILARITY){
     callback(true);
   } else {
