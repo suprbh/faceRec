@@ -27,14 +27,11 @@ var faceModule = {
 
     faceModule.opencvVersion = cv.version;
     faceModule.imagesPath = __dirname + "/data/";
-    // faceModule.capture = new cv.VideoCapture(0);
-
   },
 
   imageCapture: function(req, res) {
 
     var username = req.session.username;
-    console.log("username: ", username);
 
     var buffer ='';
     req.on('data', function(data){
@@ -59,8 +56,6 @@ var faceModule = {
         for (var i=0;i<faces.length; i++){
 
           var face = faces[i];
-          // var newIm = im.crop(face.x, face.y, face.width, face.height);
-          // newIm.save(faceModule.imagesPath+'out.jpg');
           var newIm = im.roi(face.x, face.y, face.width, face.height);
           newIm.resize(213, 213, 'CV_INTER_CUBIC');
           var grey = new cv.Matrix();
@@ -68,14 +63,13 @@ var faceModule = {
           // im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], COLOR, 2);
           newIm.save(faceModule.imagesPath+'test.png');
 
-          // train data
           console.log("cropped image saved to: ", faceModule.imagesPath + 'test.png');
           // store to Database by username, label
+          // train data
+          // faceModule.readTrainingData(faceModule.imagesPath);
 
         }
 
-        // train data
-        // faceModule.readTrainingData(faceModule.imagesPath);
 
       });
 
