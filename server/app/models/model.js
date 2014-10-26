@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}},
-    password: {type: String},
-    fakeAuth: [ FaceAuthSchema ],
-    tempo: [TempoObject]
+    password: [PasswordAuthSchema],
+    face: [ FaceAuthSchema ],
+    tempo: [TempoAuthSchema]
 });
 var User = mongoose.model('User', UserSchema);
 
