@@ -27,7 +27,12 @@ $(function(){
       success: function(data){
         console.log(data);
         var response = JSON.parse(data);
-        window.location = response.redirect;
+        if (response.redirect){
+          window.location = response.redirect;
+        }
+        if (response.token){
+          $('body').text(token);
+        }
       },
       error: function(err){console.log(err);},
       contentType: 'application/JSON'

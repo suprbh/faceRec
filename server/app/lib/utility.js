@@ -75,7 +75,7 @@ exports.errorHandler = function(error, req, res, next) {
  */
 exports.makeToken = function(req){
   var token = jwt.encode(req.sessionID, 'secret');
-  req.session.token = token;
+  return token;
 };
 
 /**
