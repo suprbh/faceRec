@@ -1,10 +1,13 @@
-<h2>Set up Facial Recognition Authentication Rule</h2>
+<h4>Set up Facial Recognition Authentication</h4>
     <!--Main video element -->
+    <input type='button' id='snapshot' value="snapshot"/>
     <p>Pose for the camera and click on snapshot to take a picture!</p>
     <video id="myVideo"></video>
 
     <!--canvas element for output -->
-    <form><input type='button' id='snapshot' value="snapshot"/></form> 
     <canvas id='output' width="105" height="105"></canvas> 
 <!--Script files-->
 <script type="text/javascript" src="/lib/face/script.js"></script>
+<!-- <script type="text/javascript" src="/lib/face/config.js"></script> -->
+<script type="text/javascript" src="/lib/face/ccv.js"></script>
+<script type="text/javascript" src="/lib/face/face.js"></script>
