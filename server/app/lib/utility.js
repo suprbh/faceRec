@@ -13,9 +13,9 @@ var isUserSessionPresent = function(req) {
  */
 exports.checkUser = function(req, res, next) {
   if (isUserSessionPresent(req)) {
-    res.redirect('/login');
-  } else {
     next();
+  } else {
+    res.redirect('/login');
   }
 };
 
