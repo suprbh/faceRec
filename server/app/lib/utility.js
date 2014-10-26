@@ -39,8 +39,9 @@ exports.createSession = function(req, res, newUser) {
  * @param storedPasswordHash
  * @param callback - callback to be invoked once password matches
  */
-exports.comparePassword = function(userProvidedPasswordHash, storedPasswordHash, callback){
-  bcrypt.compare(userProvidedPasswordHash, storedPasswordHash, function(err, isMatch) {
+exports.comparePassword = function(userProvidedPassword, storedPasswordHash, callback){
+  console.log(arguments);
+  bcrypt.compare(userProvidedPassword, storedPasswordHash, function(err, isMatch) {
     callback(isMatch);
   });
 };
