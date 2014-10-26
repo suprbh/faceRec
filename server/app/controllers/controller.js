@@ -92,10 +92,15 @@ exports.readAuthTask = function(username, authName, callback) {
       }
 
       if (callback) {
-        if (user[authName].length > 0) {
-          callback(null, user[authName][0], user);
+        if(user){
+          console.log(authName);
+          if (user[authName].length > 0) {
+            callback(null, user[authName][0], user);
+          } else {
+            callback(null, null, user);
+          }
         } else {
-          callback(null, null, user);
+          callback(null, null, null);
         }
       }
     });

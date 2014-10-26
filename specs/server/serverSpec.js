@@ -18,11 +18,11 @@ describe('serverSpec', function() {
       var username = 'john@example.com';
       var user = new User({
         username: username,
-        fakeAuth: [ {picture: 'foo'} ]
+        face: [ {picture: 'foo'} ]
       });
       user.save(function() {
         // call readAuthTask to verify that we can read auth document from database
-        controller.readAuthTask(username, 'fakeAuth', function(err, auth, user) {
+        controller.readAuthTask(username, 'face', function(err, auth, user) {
           expect(user).not.to.be.null;
           expect(user.username).to.be.equal(username);
           expect(auth).not.to.be.null;
