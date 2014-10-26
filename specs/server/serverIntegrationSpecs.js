@@ -65,7 +65,7 @@ describe('Server-side integration test suite', function() {
 
     it('should redirect to login page if a request to "/module/:module" does not have a session ', function(done) {
       request(app)
-        .get('/module/password')
+        .get('/modules/password')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .expect(302)
         .expect(function(res) {
