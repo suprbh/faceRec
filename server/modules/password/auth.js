@@ -34,7 +34,7 @@ var passwordModule = {
  * @param res
  */
   setup: function(req, res){
-    var username = req.session.username;
+    var username = req.session.user;
     var userProvidedPassword = req.body.password;
     utils.hashPassword(userProvidedPassword, function(userProvidedPasswordHash){
       var task = {};
@@ -54,7 +54,7 @@ var passwordModule = {
  * @param res
  */
   auth: function(req, res){
-    var username = req.session.username;
+    var username = req.session.user;
     db.readAuthTask(username, 'password', function(error, authTask, user){
       var storedPasswordHash = user.password;
       var userProvidedPassword = req.body.password;
