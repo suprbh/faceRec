@@ -59,9 +59,9 @@ module.exports = {
       tempoUtils.compareSamples(submittedUserPairs, referenceUserPairs, function(isMatch){
         if (isMatch){
           var token = utils.makeToken(req);
-          res.send(token);
+          res.send(JSON.stringify({token:token}));
         } else {
-          res.status(403).send('Failed Authentication');
+          res.send(JSON.stringify({rejected:true}));
         }
       });
     });

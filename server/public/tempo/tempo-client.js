@@ -31,7 +31,10 @@ $(function(){
           window.location = response.redirect;
         }
         if (response.token){
-          $('body').text(token);
+          $('body').html('<h1> Token: </h1>' + response.token);
+        }
+        if (response.rejected){
+          $('body').html('<h1> Failed to authenticate </h1>');
         }
       },
       error: function(err){console.log(err);},
