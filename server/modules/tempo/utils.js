@@ -1,5 +1,9 @@
 var tempoUtils = {};
+var gauss = require('gauss');
 
+
+// This is the constant percent-similarity required for authentication. 
+var REQUIRED_MEAN_SIMILARITY = 0.5;
 /**
  * This function takes a Tempo object, and returns the median delay 
  *  for each keyCode-pair.

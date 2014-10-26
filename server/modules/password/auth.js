@@ -60,7 +60,8 @@ var passwordModule = {
       var userProvidedPassword = req.body.password;
       utils.comparePassword(userProvidedPassword, storedPasswordHash, function(isMatch){
         if (isMatch){
-          utils.sendResponse(res, username);
+          var token = utils.makeToken(req);
+          res.send(token);
         } else {
           res.status(403).send('Failed Authentication');
         }

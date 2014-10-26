@@ -24,7 +24,11 @@ $(function(){
       type: 'post',
       data: JSON.stringify(pairs),
       url: "",
-      success: function(code){console.log(code);},
+      success: function(data){
+        console.log(data);
+        var response = JSON.parse(data);
+        window.location = response.redirect;
+      },
       error: function(err){console.log(err);},
       contentType: 'application/JSON'
     });

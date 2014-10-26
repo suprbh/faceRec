@@ -73,12 +73,9 @@ exports.errorHandler = function(error, req, res, next) {
  * @param user - user object to be used to generate a JWT token and stored into response header
  * @param statusCode - status code to be used
  */
-exports.sendResponse = function(res, user, statusCode){
-  var token = jwt.encode(user, 'secret');
-
-  statusCode = statusCode || 200;
-  res.writeHead(statusCode);
-  res.end(JSON.stringify(token));
+exports.makeToken = function(req){
+  var token = jwt.encode(req.sessionID, 'secret');
+  req.session.token = token;
 };
 
 /**
