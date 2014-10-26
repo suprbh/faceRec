@@ -22,7 +22,8 @@ app.configure(function() {
 /*
   Define all routes here
  */
-app.get('/module/:module', util.checkUser, handler.dispatchModule);;
+app.get('/modules:module', util.checkUser, handler.dispatchModule);
+
 /* Password module routes */
 app.get('/modules/password/setup', util.checkUser, passwordModule.setupRender);
 app.get('/modules/password/auth', util.checkUser, passwordModule.authRender);
