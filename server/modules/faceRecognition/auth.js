@@ -1,7 +1,7 @@
 var fs = require('fs');
 var db = require('../../app/controllers/controller.js');
 var utils = require('../../app/lib/utility.js');
-var fr = require('./scripts/script.js');
+// var fr = require('./scripts/script.js');
 // var cv = require('./lib/opencv.node');
 var cv = require('opencv');
 
@@ -63,7 +63,7 @@ var faceModule = {
           // newIm.save(faceModule.imagesPath+'out.jpg');
           var newIm = im.roi(face.x, face.y, face.width, face.height);
           newIm.resize(213, 213, 'CV_INTER_CUBIC');
-          var grey = new cv.Matrix;
+          var grey = new cv.Matrix();
           // newIm.cvtColor('CV_BGR2GRAY');
           // im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], COLOR, 2);
           newIm.save(faceModule.imagesPath+'test.png');
@@ -165,7 +165,7 @@ var faceModule = {
 
     // train data
     faceModule.readTrainingData(faceModule.imagesPath);
-    
+
     // db.readAuthTask(username, 'face', function(error, authTask, user){
     //   var storedFace = user.face;
     //   var userProvidedFace = req.body.face;
