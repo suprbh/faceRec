@@ -38,7 +38,7 @@ module.exports = {
  * @param res
  */
   setup: function(req, res){
-    var username = req.session.username;
+    var username = req.session.user;
     var userPairs = req.body;
     var task = {};
     task.pairs = userPairs;
@@ -56,7 +56,7 @@ module.exports = {
  * @param res
  */
   auth: function(req, res){
-    var username = req.session.username;
+    var username = req.session.user;
     var submittedUserPairs = req.body;
     db.readAuthTask(username, 'tempo', function(error, authTask, user){
       var referenceUserPairs = authTask.pairs;
