@@ -34,10 +34,10 @@ app.post('/modules/password/auth', util.checkUser, passwordModule.auth);
 
 /* tempo module routes */
 var tempoModule = require('./modules/tempo/auth.js');
-app.get('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setupRender);
-app.get('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.authRender);
-app.post('/modules/tempo/setup', /*util.checkUser,*/ tempoModule.setup);
-app.post('/modules/tempo/auth', /*util.checkUser,*/ tempoModule.auth);
+app.get('/modules/tempo/setup', util.checkUser, tempoModule.setupRender);
+app.get('/modules/tempo/auth', util.checkUser, tempoModule.authRender);
+app.post('/modules/tempo/setup', tempoModule.setup);
+app.post('/modules/tempo/auth', tempoModule.auth);
 
 app.get('/login', handler.loginForm);
 app.post('/login', handler.login);
