@@ -68,7 +68,7 @@ exports.dispatchModule = function (req, res) {
       }
 
       if (user) {
-        var url = (user[module]) ? ('modules/' + module + '/auth'): ('modules/' + module + '/setup');
+        var url = (user[module] == true) ? ('modules/' + module + '/auth'): ('modules/' + module + '/setup');
         res.redirect(url);
       } else {
         console.log('Use account does not exist');
