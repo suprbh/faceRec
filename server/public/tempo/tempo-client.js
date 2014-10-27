@@ -24,7 +24,19 @@ $(function(){
       type: 'post',
       data: JSON.stringify(pairs),
       url: "",
-      success: function(code){console.log(code);},
+      success: function(data){
+        console.log(data);
+        var response = JSON.parse(data);
+        if (response.redirect){
+          window.location = response.redirect;
+        }
+        if (response.token){
+          $('body').html('<h1> Token: </h1>' + response.token);
+        }
+        if (response.rejected){
+          $('body').html('<h1> Failed to authenticate </h1>');
+        }
+      },
       error: function(err){console.log(err);},
       contentType: 'application/JSON'
     });

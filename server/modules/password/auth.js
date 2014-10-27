@@ -56,16 +56,17 @@ var passwordModule = {
   auth: function(req, res){
     var username = req.session.user;
     db.readAuthTask(username, 'password', function(error, authTask, user){
-      var storedPasswordHash = user.password;
+      var storedPasswordHash = user.password[0].password;
       var userProvidedPassword = req.body.password;
-      var userProvidedPasswordHash = utils.hashPassword(userProvidedPassword);
       utils.comparePassword(userProvidedPassword, storedPasswordHash, function(isMatch){
         if (isMatch){
-          //give token
+          var token = utils.makeToken(req);
+          res.send(JSON.stringify({token: token}));
         } else {
           res.status(403).send('Failed Authentication');
         }
       });
+
     });
   },
 }

@@ -1,12 +1,8 @@
-var gauss = require('gauss');
 var utils = require('../../app/lib/utility.js');
 var tempoUtils = require('./utils.js')
 var db = require('../../app/controllers/controller.js');
 var model = require('../../app/models/model.js');
 var fs = require('fs');
-
-// This is the constant percent-similarity required for authentication. 
-var REQUIRED_MEAN_SIMILARITY = 0.5;
 
 module.exports = {
   /**
@@ -44,7 +40,7 @@ module.exports = {
     task.pairs = userPairs;
     db.saveAuthTask(username, 'tempo', task, function(error, authTask, user){
       if (error) console.log(error);
-      res.redirect('/index');
+      res.send('{"redirect": "/index"}');
     });
   },
 
@@ -62,9 +58,10 @@ module.exports = {
       var referenceUserPairs = authTask.pairs;
       tempoUtils.compareSamples(submittedUserPairs, referenceUserPairs, function(isMatch){
         if (isMatch){
-          utils.sendResponse(res, username)
+          var token = utils.makeToken(req);
+          res.send(JSON.stringify({token:token}));
         } else {
-          res.status(403).send('Failed Authentication');
+          res.send(JSON.stringify({rejected:true}));
         }
       });
     });
