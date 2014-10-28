@@ -1,6 +1,6 @@
-# EasyAuth [![Build Status](https://travis-ci.org/mountain-device/easyauth.svg?branch=master)](https://travis-ci.org/mountain-device/easyauth)
+# Facial Authorization [![Build Status](https://travis-ci.org/mountain-device/easyauth.svg?branch=master)](https://travis-ci.org/mountain-device/easyauth)
 
-> Pithy project description
+> Facial Recognition Module for User Authentication
 
 ## Team
 
