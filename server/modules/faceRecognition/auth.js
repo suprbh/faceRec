@@ -71,11 +71,24 @@ var faceModule = {
                 // store to Database by username, label
                 // train data
                 faceModule.readTrainingData(faceModule.imagesPath, req, res);
-              }
+
+                /* Recognice faces in streams
+                var matrixStream = new cv.VideoCapture(0).toStream()
+                    , faceRecognitionStream = new cv.ObjectDetectionStream(cv.FACE_CASCADE)
+
+                      faceRecognitionStream.on('data', function(faces){
+                        console.log("I spy", faces.length, "faces...")
+                      });
+
+                      matrixStream.pipe(faceRecognitionStream);
+                      matrixStream.read();
+                  }
+
+                });*/
+            }
 
             });
-
-           });
+          });
 
         });
     });
@@ -153,16 +166,6 @@ var faceModule = {
   setup: function(req, res){
     var username = req.session.username;
     console.log("face/setup: ");
-
-    // utils.collectData(req, res, function(data){
-    //   // save to local file
-    //   fs.writeFile("/data/"+username, JSON.parse(data), function(err){
-    //     console.log(err);
-    //   });
-    // });
-    // var userProvidedface = req.body;
-    // console.log("Inside face/setup: ", userProvidedface);
-    
 
     // Add face to database of faces using opencv
     res.redirect('/index');
