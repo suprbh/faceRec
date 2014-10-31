@@ -18,9 +18,9 @@
 
 ## Usage
 
-> Run the express node server. Similar to [easyAuth](https://github.com/mountain-device/easyauth)
-> Open http connection to the server and sign-up/sign-in
-> Select face as the authentication technique.
+- Run the express node server. Similar to [easyAuth](https://github.com/mountain-device/easyauth)
+- Open http connection to the server and sign-up/sign-in
+- Select face as the authentication technique.
 
 ## Requirements
 
