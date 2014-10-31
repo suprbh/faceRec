@@ -24,6 +24,10 @@ var faceModule = {
     res.render('face/face-setup');
   },
 
+  /*******************************************
+  * Initialize the path where to store the images,
+  * and get the opencv version (just for checking)
+  *********************************************/
   initFaceDetect: function() {
 
     faceModule.opencvVersion = cv.version;
@@ -33,7 +37,47 @@ var faceModule = {
   imageCapture: function(req, res) {
 
     var username = req.session.username;
+    console.log("imageCapture[username]: ", username);
 
+    var vidStream = cv.VideoCapture(0);
+    var count = 0;
+
+    var detect = function() {
+      vidStream.read(function(im){
+        im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
+          console.log("I spy ", faces.length, " faces" );
+          for (var i=0;i<faces.length; i++){
+
+                var face = faces[i];
+                var newIm = im.roi(face.x, face.y, face.width, face.height);
+                newIm.resize(200, 200, 'CV_INTER_CUBIC');
+
+                //save the image
+                newImFileName = faceModule.imagesPath+ username_count + '.png';
+                newIm.save(newImFileName);
+
+                console.log("cropped image saved to: ", newImFileName);
+                // TODO: store to Database by username, label
+                // train data
+                // faceModule.writeTrainingData(newImFileName);
+              }
+          if (++count < 6){
+            detect();
+          }
+        });
+      });
+    }
+
+    detect();
+
+    /*********************************
+    * This section of code receives image from the browser when
+    * the user clicks 'snapshot', and sends to the server.
+    * The face is then detected and stored in a file.
+    * Since it is called in the setup process, we only train the
+    * the Fisher face recognizer with the training data of n no.of
+    * images.
+    **********************************
     var buffer ='';
     req.on('data', function(data){
       buffer += data;
@@ -60,7 +104,6 @@ var faceModule = {
                 
                 // change image to grayscale
                 // newIm.cvtColor('CV_BGR2GRAY');
-
                 // draw rectangle around the face
                 // im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], COLOR, 2);
                 
@@ -68,30 +111,17 @@ var faceModule = {
                 newIm.save(faceModule.imagesPath+'test.png');
 
                 console.log("cropped image saved to: ", faceModule.imagesPath + 'test.png');
-                // store to Database by username, label
+                // TODO: store to Database by username, label
                 // train data
                 faceModule.readTrainingData(faceModule.imagesPath, req, res);
-
-                /* Recognice faces in streams
-                var matrixStream = new cv.VideoCapture(0).toStream()
-                    , faceRecognitionStream = new cv.ObjectDetectionStream(cv.FACE_CASCADE)
-
-                      faceRecognitionStream.on('data', function(faces){
-                        console.log("I spy", faces.length, "faces...")
-                      });
-
-                      matrixStream.pipe(faceRecognitionStream);
-                      matrixStream.read();
-                  }
-
-                });*/
-            }
+              }
 
             });
           });
 
         });
-    });
+    });*/
+
   },
 
   readTrainingData: function(path, req, res) {
@@ -126,19 +156,26 @@ var faceModule = {
       console.log("prediction: id, confidence: ", predict.id, predict.confidence);
       var names = ["Supriya", "Ryo", "Carl", "Allen", ];
 
-      var statusCode = 200;
+      // var statusCode = 200;
       var username = names[predict.id];
       if (names[predict.id] === undefined){
-        statusCode = 404;
+        
+        // statusCode = 404;
         username = "not registered";
         console.log(req.session.user, "Not registered");
+
       } else if (predict.confidence >= 2500){
+          
           console.log("Not sure who you are");
           console.log("Try loggin in again with brighter lighting or using other methods of Authentication...");
+      
       } else {
+       
        console.log("Hello ", names[predict.id], "!");
+       
        var token = utils.makeToken(req);
        res.send(JSON.stringify({token:token}));
+      
       }
 
     });
@@ -166,6 +203,8 @@ var faceModule = {
   setup: function(req, res){
     var username = req.session.username;
     console.log("face/setup: ");
+
+    faceModule.imageCapture(req, res);
 
     // Add face to database of faces using opencv
     res.redirect('/index');

@@ -47,8 +47,6 @@ app.post('/modules/tempo/auth', tempoModule.auth);
 /* Face recognition module routes */
 app.get('/modules/face/setup', util.checkUser, faceModule.setupRender);
 app.get('/modules/face/auth', util.checkUser, faceModule.authRender);
-app.get('/modules/face/capture', util.checkUser, faceModule.imageCapture);
-app.post('/modules/face/capture', util.checkUser, faceModule.imageCapture);
 app.post('/modules/face/setup', util.checkUser, faceModule.setup);
 app.post('/modules/face/auth', util.checkUser, faceModule.auth);
 

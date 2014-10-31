@@ -4,9 +4,7 @@
 
 ## Team
 
-  - __Product Owner__: Allen Krulwich
-  - __Scrum Master__: Ryo Osawa
-  - __Development Team Members__: Carl Goldberg, Supriya Bhat
+  - Supriya Bhat
 
 ## Table of Contents
 
@@ -25,10 +23,8 @@
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Mongo DB
+- OpenCV
 
 ## Development
 

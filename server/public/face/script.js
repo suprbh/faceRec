@@ -35,8 +35,15 @@ faceRecognizer.init = function() {
      // Do something with the video here, e.g. video.play()
     faceRecognizer.video.play();
     document.getElementById('snapshot').onclick = function() { 
-      faceRecognizer.renderScreenShot(stream);
-      // faceRecognizer.faceDetect();
+      for (var count = 0; count < 5; count++){
+        faceRecognizer.renderScreenShot(stream, count);
+        // faceRecognizer.faceDetect();
+      }
+
+      //close camera
+      faceRecognizer.video.pause();
+      faceRecognizer.video.src = "";
+      stream.stop();
       
     };
 
@@ -63,7 +70,7 @@ faceRecognizer.init = function() {
 
 };
 
-faceRecognizer.renderScreenShot = function(stream) {
+faceRecognizer.renderScreenShot = function(stream, imNum) {
  
   // render a captured image onto screen
   ratio = faceRecognizer.video.videoWidth / faceRecognizer.video.videoHeight;
@@ -75,13 +82,7 @@ faceRecognizer.renderScreenShot = function(stream) {
   faceRecognizer.ctx.fillRect(0, 0, w, h);
   faceRecognizer.ctx.drawImage(faceRecognizer.video, 0, 0, w, h);
 
-  //close camera
-  faceRecognizer.video.pause();
-  faceRecognizer.video.src = "";
-  stream.stop();
-
-  faceRecognizer.saveImage(); // save face to local file
-
+  faceRecognizer.saveImage(imNum); // save face to local file
 
 };
 
@@ -139,7 +140,7 @@ faceRecognizer.drawFaceBoundary = function(comp, image) {
     }
 };
 
-faceRecognizer.saveImage = function() {
+faceRecognizer.saveImage = function(imNum) {
   faceRecognizer.canvas = document.querySelector('#output');
   faceRecognizer.ctx = faceRecognizer.canvas.getContext("2d");
 
@@ -148,7 +149,7 @@ faceRecognizer.saveImage = function() {
   image.onload = function(){
 
     // save image
-    var fileName = "positivePicture.jpg";
+    var fileName = "pic_" + imNum + ".jpg";
     var a = document.createElement('a');
     var blob = faceRecognizer.dataURLToBlob(image.src);
 
@@ -179,7 +180,6 @@ faceRecognizer.saveImage = function() {
   };
 
   image.src = faceRecognizer.canvas.toDataURL('image/png');
-
 
 };
 
@@ -214,10 +214,13 @@ faceRecognizer.dataURLToBlob = function(dataURL) {
 };
 
 
+/**********************************************
+ Send the captured image to the server
+**********************************************/
 faceRecognizer.sendToSersver = function(data) {
 
   $.ajax({
-    url: "http://127.0.0.1:4568/modules/face/capture",
+    url: "http://127.0.0.1:4568/modules/face/setup",
     type: 'POST',
     contentType: 'jsonp',
     data: JSON.stringify(data),
