@@ -33,7 +33,7 @@ describe('Server-side integration test suite', function() {
         .get('/login')
         .expect(200)
         .expect(function(res) {
-          expect(res.text).to.include('<title>EasyAuth</title>');
+          expect(res.text).to.include('<title>FaceRec</title>');
         })
         .end(done);
     });
